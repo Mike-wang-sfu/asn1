@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <link rel="stylesheets" type = "text/css" href="calculator.css" /> -->
+    <!-- <script src="calculator.js">
+      function comput_percent(num_id, denom_id ){
+    var num = document.getElementById(num_id).innerHTML;
+    var denom = document.getElementById(denom_id).innerHTML;
+    return num/denom
+    }
+    </script> -->
+    <script> 
+      function compute_percent(num_id, denom_id){
+        var num = document.getElementById(num_id).value;
+        var denom = document.getElementById(denom_id).value;
+        var result = Math.round((num/denom)*100)/100;
+        // console.log(num);
+        // console.log(denom);
+        // console.log(result);
+        return result;
+      }
+      function compute_weighted(){
+        var weight_list = document.getElementsByName("Weight");
+        var percent_list = document.getElementsByName("Percent");
+        let sum = 0;
+        let weight_sum = 0;
+        for(var i = 0; i<5; i++){
+          if(!isNaN(parseFloat(weight_list[i].value)) && !isNaN(parseFloat(percent_list[i].innerText))){
+            sum += parseFloat(weight_list[i].value) * parseFloat(percent_list[i].innerText);
+            weight_sum += parseFloat(weight_list[i].value);
+            // console.log(sum);
+            // console.log(weight_sum);
+          }
+        }
+        console.log(sum);
+        console.log(weight_sum);
+        var result = Math.round((sum/weight_sum)*1000)/1000;
+        document.getElementById('display_place').innerText = 
+        "Your weighted mean is: " + Math.round((result*100)*10)/10 + "%";
+
+      }
+      function compute_mean(){
+        var percent_list = document.getElementsByName("Percent");
+        let sum = 0;
+        let number_of_percent = 0;
+        for(var i = 0; i<5; i++){
+          if(!isNaN(parseFloat(percent_list[i].innerText))){
+            sum += parseFloat(percent_list[i].innerText);
+            number_of_percent++;
+            // console.log(sum);
+          }
+        }
+        //console.log(sum);
+        var result = Math.round((sum/number_of_percent)*1000)/1000;
+        document.getElementById('display_place').innerText = 
+        "Your mean is: " + Math.round((result*100)*10)/10 + "%";
+      }
+      </script>
+    <style>
+      body{
+        background-color: #A6192E;
+      }
+      .bodyPart{
+        background-color: rgb(236, 232, 250);
+        height: 540px;
+        width: 700px;
+        margin-top: 0px;
+      }
+      .background{
+        background-color: rgb(253, 251, 251);
+        margin-left: 200px;
+        margin-right: 300px;
+        height: 650px;
+        width: 900px;
+      }
+      .header1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 22px;
+      }
+      .header2{
+        color: #CC0633;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: large;
+      }
+      .header3{
+        font-family: 'Times New Roman', Times, serif;
+        font-size: medium;
+      }
+      button{
+        background-color: #CC0633;
+        color: white;
+        height: 30px;
+      }
+      td{
+        height: 60px;
+        width: 200px;
+      }
+      th{
+        background-color : rgb(221, 217, 217);
+        height: 30px;
+        text-align: left;
+      }
+      input{
+        height: 30px;
+        width: 45px;
+        margin-left: 5px;
+      }
+      table{
+        border-collapse: collapse;
+      }
+      table,td,th{
+        border: 1px solid rgb(133, 130, 130);
+      }
+    </style>
+    
+    <meta charset = "utf-8"/>
+  </head>
+<title>Grade Calculator</title>
+  <body>
+    <div class = "background">
+    <p class = "header1"><br>Grade Calculator</p>
+    <div class = "bodyPart">
+      <h2 class = "header2">
+        <br>
+        Activity 
+        </h2>
+        <p class = "header3">
+          Give grades to the numeric activities
+        </p>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Short Name</th>
+            <th>Weight</th>
+            <th>Grade</th>
+            <th>Percent</th>
+          </tr>
+          <tr id = 'a1'> 
+            <td>Activity1</td>
+            <td>A1</td>
+            <td><form> 
+              <input type="number" name = "Weight">
+            </form></td>
+            <td>
+              <input type = "number" id = 'grade_num1' onblur="document.getElementById('percent1').innerHTML = 
+              compute_percent('grade_num1', 'grade_denom1');"> /
+              <input type="number" id = 'grade_denom1' onblur="document.getElementById('percent1').innerHTML = 
+              compute_percent('grade_num1', 'grade_denom1');">
+            </td>
+            <td id = 'percent1' name = "Percent"></td>
+          </tr>
+          <tr>
+            <td>Activity2</td>
+            <td>A2</td>
+            <td><form> 
+              <input type="number" name = "Weight">
+            </form></td>
+            <td>
+              <form >
+                <input type="number" id = 'grade_num2' onblur="document.getElementById('percent2').innerHTML = 
+                compute_percent('grade_num2', 'grade_denom2');"/> /
+                <input type="number" id = 'grade_denom2' onblur="document.getElementById('percent2').innerHTML = 
+                compute_percent('grade_num2', 'grade_denom2');"/> 
+                </form> 
+            </td>
+            <td id = 'percent2' name = "Percent"></td>
+          </tr>
+          <tr>
+            <td>Activity3</td>
+            <td>A3</td>
+            <td><form> 
+              <input type="number" name = "Weight">
+            </form></td>
+            <td>
+              <form >
+                <input type="number" id = 'grade_num3' onblur="document.getElementById('percent3').innerHTML = 
+                compute_percent('grade_num3', 'grade_denom3');"> /
+                <input type="number" id = 'grade_denom3' onblur="document.getElementById('percent3').innerHTML = 
+                compute_percent('grade_num3', 'grade_denom3');">
+                </form> 
+            </td>
+            <td id = 'percent3' name = "Percent"></td>
+          </tr>
+          <tr>
+            <td>Activity4</td>
+            <td>A4</td>
+            <td><form> 
+              <input type="number" name = "Weight">
+            </form></td>
+            <td>
+              <form >
+                <input type="number" id = 'grade_num4' onblur="document.getElementById('percent4').innerHTML = 
+                compute_percent('grade_num4', 'grade_denom4');"> /
+                <input type="number" id = 'grade_denom4' onblur="document.getElementById('percent4').innerHTML = 
+                compute_percent('grade_num4', 'grade_denom4');">
+                </form> 
+            </td>
+            <td id = 'percent4' name = "Percent"></td>
+          </tr> 
+          <tr id = "a5" style="display: none;">
+            <td>Activity5</td>
+            <td>A5</td>
+            <td><form> 
+              <input type="number" name = "Weight">
+            </form></td>
+            <td>
+              <form >
+                <input type="number"  id = 'grade_num5' onblur="document.getElementById('percent5').innerHTML = 
+                compute_percent('grade_num5', 'grade_denom5');"> /
+                <input type="number" id = 'grade_denom5' onblur="document.getElementById('percent5').innerHTML = 
+                compute_percent('grade_num5', 'grade_denom5');"> 
+                </form> 
+            </td>
+            <td id = 'percent5' name = "Percent"> </td>
+          </tr> 
+        </table>
+        <br>
+        <button onclick="document.getElementById('a5').style = document.getElementById('a1')">
+          ADD ACTIVITY
+        </button>
+        
+        <h4 class = "header2">
+          Result:
+        <p id = 'display_place'>
+        </p>
+      </h4>
+        <div style="text-align: right;">
+        <button onclick="compute_weighted();">
+          WEIGHTED
+        </button>
+        <button onclick="compute_mean();">
+          MEAN
+        </button>
+        </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+
+.header1{
+  color: black;
+  font-style: normal;
+  font-size:larger;
+  font-family: Arial, Helvetica, sans-serif;
+ }
+.bodyPart{
+  background-color: rgb(205, 250, 252);
+}
+.header2{
+  color: firebrick;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;      
+}
+.header3{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: small;
+}
+.button{
+  text-align: end;
+}
