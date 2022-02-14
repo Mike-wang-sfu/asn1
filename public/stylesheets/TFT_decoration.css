@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+    color: rgb(252, 250, 250);
+    font-size: 30px;
+}
+body{
+    background-color: aquamarine;
+}
+.front{
+    text-align: center;
+    font-size: 15px;
+    color: rgb(255, 1, 1)
+}

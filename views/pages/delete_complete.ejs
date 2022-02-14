@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include ("../partials/header.ejs") %>
+  <style>
+    table{
+        border-collapse: collapse;
+      }
+      table,td,th{
+        border: 1px solid rgb(133, 130, 130);
+      }
+      td{
+        height: 60px;
+        width: 200px;
+        font-size: 20px;
+      }
+      th{
+        background-color : rgb(221, 217, 217);
+        height: 30px;
+        text-align: left;
+      }
+  </style>
+</head>
+
+<body>
+
+<%- include ("../partials/nav.ejs") %>
+
+<div class="container">
+<h2>Delete Complete</h2>
+<form action = "/database", method = "get">
+    <input type = "submit", value="OK">
+</form>
+
+</body>
+</html>

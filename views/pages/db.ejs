@@ -2,22 +2,86 @@
 <html>
 <head>
   <%- include ("../partials/header.ejs") %>
+  <style>
+    table{
+        border-collapse: collapse;
+        text-align: center;
+        margin-left: 170px;
+
+      }
+      table,td,th{
+        border: 1px solid rgb(133, 130, 130);
+      }
+      td{
+        height: 60px;
+        width: 200px;
+        font-size: 20px;
+      }
+      th{
+        background-color : rgb(221, 217, 217);
+        height: 30px;
+        text-align: left;
+      }
+      body{
+        background-color: #A6192E;
+      }
+      .displayArea{
+        text-align: center;
+        background-color: white;
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+  </style>
 </head>
 
 <body>
 
 <%- include ("../partials/nav.ejs") %>
 
-<div class="container">
-<h2>Database Results</h2>
+<div class = "displayArea">
+<h2 style="color: rgb(0, 0, 0);">Rectangle</h2>
 
-<ul>
-    <% results.forEach(function(r) { %>
-        <li><%= r.id %> - <%= r.name %></li>
+<table > 
+  <tr>
+      <th>uid</th>
+      <th>name</th>
+      <th>color</th>
+    </tr>
+  <% rows.forEach(function(r) { %>
+    <tr>  
+      <td>
+        <%= r.uid %>
+      </td>  
+      <td>
+        <a href = "/userdb/<%= r.name %>"><%= r.name %></a>
+      </td> 
+      <td>
+        <%= r.color %>
+      </td>
+    </tr>
     <% }); %>
-</ul>
+    </table>
+<div name = "insertrow", class = "insertionform">
+  <h2>To insert new Rectangle, please fill in information below.</h2>
+  <form action = "/addnewrow", method ="post">
+    <input type = "number" name = "id" placeholder="ID"><br>
+    <input type="text" name="uname" placeholder="NAME"> <br>
+    <input type="text" name="color" placeholder="color"> <br>
+    <input type="number" name = "width" placeholder="width"><br>
+    <input type="number" name = "height" placeholder="height"><br>
+    <br>
+    <input type="submit">
 
+  </form>
 </div>
-
+<div class = "deleteForm">
+  <h2>to delete any row, please fill in its uid and click delete</h2>
+  <form action = "/deleterow", method = "post">
+    <input type = "text" name = "id" placeholder="UID"><br>
+    <br>
+    <input type = "submit">
+  </form>
+</div>
+</div>
 </body>
 </html>

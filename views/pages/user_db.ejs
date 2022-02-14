@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include ("../partials/header.ejs") %>
+  <style>
+    table{
+        border-collapse: collapse;
+      }
+      table,td,th{
+        border: 1px solid rgb(133, 130, 130);
+      }
+      td{
+        height: 60px;
+        width: 200px;
+        font-size: 20px;
+      }
+      th{
+        background-color : rgb(221, 217, 217);
+        height: 30px;
+        text-align: left;
+      }
+      .backbutton{
+        margin-left: 825px;
+      }
+  </style>
+</head>
+
+<body>
+
+<%- include ("../partials/nav.ejs") %>
+
+<div class="container">
+<h2>Hello <% rows.forEach(function(r) { %>
+      <%= r.name %>
+  <% }); %></h2>
+
+<table > 
+  <tr>
+      <th>uid</th>
+      <th>name</th>
+      <th>color</th>
+      <th>width</th>
+      <th>height</th>
+    </tr>
+  <% rows.forEach(function(r) { %>
+    <tr>  
+      <td>
+        <%= r.uid %>
+      </td>  
+      <td>
+        <%= r.name %>
+      </td> 
+      <td>
+        <%= r.color %>
+      </td>
+      <td>
+        <%= r.width %>
+      </td>
+      <td>
+        <%= r.height %>
+      </td>
+    </tr>
+    <% }); %>
+    </table>
+
+</div>
+<br>
+<div>
+  <form action = "/database", method = "get" class = "backbutton">
+    <input type = "submit", value = "CLICK HERE TO GO BACK TO MAIN PAGE">
+  </form>
+</div>
+</body>
+</html>
