@@ -36,9 +36,9 @@ app.get('/database', async (req,res)=>{
 })
 
 //below function is to add new elements to database table
-app.post('/addnewrow', async(req,res)=>{
-    var getUsersQuery = `INSERT INTO rec VALUES (
-     ${req.body.id}, '${req.body.uname}', '${req.body.color}'
+app.post('/addnewrow', async(req,res)=>{ 
+  var getUsersQuery = `INSERT INTO rec(name,color,width,height) VALUES (
+     '${req.body.uname}', '${req.body.color}'
      , ${req.body.width}, ${req.body.height})`;
     pool.query(getUsersQuery, async(error, result)=>{
       if(error) {
@@ -68,10 +68,10 @@ app.post('/deleterow', async(req,res)=>{
 })
 
 //below is function to display user info
-app.get('/userdb/:rname', (req,res)=>{
+app.get('/userdb/:rid', (req,res)=>{
   //console.log("success");
   //console.log(req.params.rname);
-  var getUsersQuery = `SELECT * FROM rec where name = '${req.params.rname}'`;
+  var getUsersQuery = `SELECT * FROM rec where uid = '${req.params.rid}'`;
   pool.query(getUsersQuery, async(error,result) => {
     if (error) {
       res.end(error)

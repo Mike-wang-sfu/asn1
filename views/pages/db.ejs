@@ -53,7 +53,7 @@
         <%= r.uid %>
       </td>  
       <td>
-        <a href = "/userdb/<%= r.name %>"><%= r.name %></a>
+        <a href = "/userdb/<%= r.uid %>"><%= r.name %></a>
       </td> 
       <td>
         <%= r.color %>
@@ -64,7 +64,6 @@
 <div name = "insertrow", class = "insertionform">
   <h2>To insert new Rectangle, please fill in information below.</h2>
   <form action = "/addnewrow", method ="post">
-    <input type = "number" name = "id" placeholder="ID"><br>
     <input type="text" name="uname" placeholder="NAME"> <br>
     <input type="text" name="color" placeholder="color"> <br>
     <input type="number" name = "width" placeholder="width"><br>
