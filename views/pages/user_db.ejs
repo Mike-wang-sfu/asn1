@@ -70,5 +70,28 @@
     <input type = "submit", value = "CLICK HERE TO GO BACK TO MAIN PAGE">
   </form>
 </div>
+<div>
+  <h2>If you want to update some indormation of your profile, please fill in information below: </h2>
+  <br>
+  <p>update name:</p>
+  <% rows.forEach(function(r) { %>
+  <form action = "/updateName/<%= r.uid %>", method = "post" >
+    <input type = "text", name = "uname", placeholder="NEW NAME">
+    <input type = "submit", value = "change name">
+  </form>
+  <form action = "/updateColor/<%= r.uid %>", method = "post" >
+    <input type = "text", name = "color", placeholder="NEW COLOR">
+    <input type = "submit", value = "change color">
+  </form>
+  <form action = "/updateWidth/<%= r.uid %>", method = "post" >
+    <input type = "text", name = "width", placeholder="NEW WIDTH">
+    <input type = "submit", value = "change width">
+  </form>
+  <form action = "/updateHeight/<%= r.uid %>", method = "post" >
+    <input type = "text", name = "height", placeholder="NEW HEIGHT">
+    <input type = "submit", value = "change height">
+  </form>
+  <% }); %>
+</div>
 </body>
 </html>

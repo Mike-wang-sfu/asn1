@@ -1,3 +1,4 @@
+const { query } = require('express');
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -71,7 +72,7 @@ app.post('/deleterow', async(req,res)=>{
 app.get('/userdb/:rid', (req,res)=>{
   //console.log("success");
   //console.log(req.params.rname);
-  var getUsersQuery = `SELECT * FROM rec where uid = '${req.params.rid}'`;
+  var getUsersQuery = `SELECT * FROM rec where uid = ${req.params.rid}`;
   pool.query(getUsersQuery, async(error,result) => {
     if (error) {
       res.end(error)
@@ -82,6 +83,54 @@ app.get('/userdb/:rid', (req,res)=>{
     }
   })
 })
-
+app.post('/updateName/:uid', (req,res)=>{
+  var getUsersQuery = `UPDATE rec set name = '${req.body.uname}'
+  where uid = ${req.params.uid}`;
+  pool.query(getUsersQuery, async(error,result) =>{
+    if(error){
+      res.end(error)
+    }
+    else{
+      res.render("pages/update_complete");
+    }
+  })
+})
+app.post('/updateColor/:uid', (req,res)=>{
+  var getUsersQuery = `UPDATE rec set color = '${req.body.color}'
+  where uid = '${req.params.uid}'`;
+  pool.query(getUsersQuery, async(error,result) =>{
+    if(error){
+      res.end(error)
+    }
+    else{
+      res.render("pages/update_complete");
+    }
+  })
+})
+app.post('/updateWidth/:uid', (req,res)=>{
+  var getUsersQuery = `UPDATE rec set width = ${req.body.width}
+  where uid = '${req.params.uid}'`;
+  pool.query(getUsersQuery, async(error,result) =>{
+    if(error){
+      res.end(error)
+    }
+    else{
+      var uid = {id:req.params.uid};
+      res.render("pages/update_complete", uid);
+    }
+  })
+})
+app.post('/updateHeight/:uid', (req,res)=>{
+  var getUsersQuery = `UPDATE rec set height = ${req.body.height}
+  where uid = '${req.params.uid}'`;
+  pool.query(getUsersQuery, async(error,result) =>{
+    if(error){
+      res.end(error)
+    }
+    else{
+      res.render("pages/update_complete");
+    }
+  })
+})
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
